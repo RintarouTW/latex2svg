@@ -36,7 +36,7 @@ function latex2svg(latex) {
   const html = MathpixMarkdownModel.markdownToHTML(latex, options);
   const parsed = MathpixMarkdownModel.parseMarkdownByHTML(html, false);
   console.log("parsed = ", parsed);
-  
+
   return parsed;
 }
 
@@ -80,7 +80,7 @@ function handler (req, res) {
 
         } else {
             console.log("index.html");
-            fs.readFile(__dirname + '/static/index.html', function (err, data) {
+            fs.readFile(__dirname + '/public/index.html', function (err, data) {
 
                 if (err) {
                     res.writeHead(500);

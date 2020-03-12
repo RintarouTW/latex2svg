@@ -1,2 +1,5 @@
-post('http://localhost/latex2svg',
+request.post('http://localhost/latex2svg',
     json = {"latex": "$$\frac{}$$"})
+
+requests.post('http://localhost:9000/latex2svg',
+    json = {"latex": "$$\\frac{1}{6}$$"})

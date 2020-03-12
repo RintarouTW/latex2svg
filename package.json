@@ -7,11 +7,14 @@
     "axios": "^0.19.2",
     "jsdom": "^16.2.1",
     "mathpix-markdown-it": "^1.0.13",
+    "netlify-lambda": "^1.6.3",
     "window": "^4.2.6"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start:lambda": "netlify-lambda serve functions",
+    "build:lambda": "netlify-lambda build functions"
   },
   "repository": {
     "type": "git",
