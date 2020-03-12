@@ -5,12 +5,13 @@
   "main": "app.js",
   "dependencies": {
     "axios": "^0.19.2",
-    "jsdom": "^16.2.1",
     "mathpix-markdown-it": "^1.0.13",
     "netlify-lambda": "^1.6.3",
     "window": "^4.2.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "node-loader": "^0.6.0"
+  },
   "scripts": {
     "test": "mocha",
     "prod": "npm run build:lambda",
@@ -26,5 +27,6 @@
   "bugs": {
     "url": "https://github.com/RintarouTW/latex2svg/issues"
   },
-  "homepage": "https://github.com/RintarouTW/latex2svg#readme"
+  "homepage": "https://github.com/RintarouTW/latex2svg#readme",
+  "optionalDependencies": {}
 }

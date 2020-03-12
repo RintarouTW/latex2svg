@@ -13,9 +13,9 @@ function latex2svg(latex) {
       return response.json();
     }).then(json => {
       container = document.getElementById('svg_container');
-      container.innerHTML = json.value;
+      container.innerHTML = json.svg;
     }).catch(function(error) {
-      console.log(error); 
+      console.log(error);
    });;
 }
 

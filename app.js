@@ -1,15 +1,4 @@
-const {MathpixMarkdownModel} = require('mathpix-markdown-it');
-
-// requried by mathpix-markdown it for parse html back to markdown.
-const Window = require('window');
-const window = new Window();
-global.window = window;
-global.document = window.document;
- 
-const jsdom = require("jsdom");
-const { JSDOM } = jsdom;
-global.DOMParser = new JSDOM().window.DOMParser;
-// could be disabled if html -> markdown is not requried.
+const latex2svg = require("./latex2svg.js");
 
 var fs = require('fs');
 var app = require('http').createServer(handler)
@@ -21,31 +10,12 @@ const resources = [
 "/favicon.ico"
 ];
 
-function latex2svg(latex) {
-  const options = {
-    outMath: {
-        include_asciimath: false,
-        include_mathml: false,
-        include_latex: true,
-        include_svg: true,
-        include_tsv: false,
-        include_table_html: false
-    }
-  };
-  
-  const html = MathpixMarkdownModel.markdownToHTML(latex, options);
-  const parsed = MathpixMarkdownModel.parseMarkdownByHTML(html, false);
-  console.log("parsed = ", parsed);
-
-  return parsed;
-}
-
 function handler (req, res) {
 
     console.log(req.url);
     if (resources.indexOf(req.url) >= 0) {
         
-        var stream = fs.createReadStream(__dirname + "/static" + req.url);
+        var stream = fs.createReadStream(__dirname + "/public" + req.url);
 
         stream.on('error', function(error) {
             res.writeHead(404, 'Not Found');
@@ -56,7 +26,7 @@ function handler (req, res) {
 
     } else {
 
-        if (req.url == "/latex2svg") {            
+        if (req.url == "/.netlify/functions/latex2svg") {
 
             data = []
             req.on('data', chunk =>{
@@ -71,10 +41,10 @@ function handler (req, res) {
 
                 json = JSON.parse(data);
                 console.log(`json =`, json.latex);                
-                svg = latex2svg(json.latex);
-                console.log(`svg = ${svg}`);             
+                obj = latex2svg(json.latex);
+                console.log(`obj = `, obj);
                 res.writeHead(200);
-                res.end(JSON.stringify(svg[1]));
+                res.end(JSON.stringify(obj));
             });
 
 
@@ -100,7 +70,7 @@ console.log("=== Automation Testing ===");
 
 const axios = require('axios');
 
-axios.post('http://localhost/latex2svg', {
+axios.post('/.netlify/functions/latex2svg', {
   "latex": '\$\$\\frac{1}{2}\$\$'
 }).then(res => {
     console.log(`Response.data : `, res.data);
