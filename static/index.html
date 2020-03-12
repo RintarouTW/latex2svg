@@ -1,0 +1,29 @@
+<html>
+<script>
+
+function latex2svg(latex) {
+
+  fetch('/latex2svg', {
+      method: 'POST',
+      body: JSON.stringify(latex),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })      
+    }).then(response => {
+      return response.json();
+    }).then(json => {
+      container = document.getElementById('svg_container');
+      container.innerHTML = json.value;
+    }).catch(function(error) {
+      console.log(error); 
+   });;
+}
+
+latex2svg({ "latex" : '\$\$\\frac{1}{3}\$\$'});
+
+</script>
+<body>
+    <div id="svg_container">
+    </div>
+</body>
+</html>

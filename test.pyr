@@ -1,0 +1,2 @@
+post('http://localhost/latex2svg',
+    json = {"latex": "$$\frac{}$$"})
