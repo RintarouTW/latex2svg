@@ -4,10 +4,12 @@ requests.post('http://localhost/.netlify/functions/latex2svg',
     json = {"latex": "$$\frac{}$$"})
 
 ## localhost netlify-lambda serve functions test.
-requests.post('http://localhost:9000/latex2svg',
+requests.post('http://localhost:9000/.netlify/functions/latex2svg',
     json = {"latex": "$$\\frac{1}{6}$$"})
 
 ## netlify-lambda function server test
 requests.post('https://rintaroutw-latex2svg.netlify.com/.netlify/functions/latex2svg',
     json = {"latex": "$$\\frac{1}{6}$$"})
 
+## web site
+https://rintaroutw-latex2svg.netlify.com/

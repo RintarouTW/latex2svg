@@ -21,15 +21,13 @@ function latex2svg(latex) {
 
 exports.handler = function(event, context, callback) {
 
-  console.log(event);
-
-  data = event.body ? event.body : '{ "latex" : "\$\$ \\\\frac{1}{2}\$\$"}';
+  data = event.body ? event.body : '{ "latex" : "\$\$\\LaTeX\\frac{1}{3}\$\$"}';
   json = {};
 
   try {
     json = JSON.parse(data);
-  } catch (err) {
-    console.log(data, err);
+  } catch (err) { 
+    console.log ("Failed to parse as JSON:", data); 
   }
 
   console.log(`json.latex =`, json.latex);

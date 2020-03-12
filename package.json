@@ -14,9 +14,9 @@
   },
   "scripts": {
     "test": "mocha",
-    "prod": "npm run build:lambda",
-    "start:lambda": "netlify-lambda serve functions",
-    "build:lambda": "netlify-lambda build functions"
+    "prod": "npm run build",
+    "start": "netlify-lambda serve functions",
+    "build": "netlify-lambda build functions"
   },
   "repository": {
     "type": "git",

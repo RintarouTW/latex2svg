@@ -13,6 +13,7 @@ const resources = [
 function handler (req, res) {
 
     console.log(req.url);
+    
     if (resources.indexOf(req.url) >= 0) {
         
         var stream = fs.createReadStream(__dirname + "/public" + req.url);
