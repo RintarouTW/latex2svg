@@ -13,6 +13,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "mocha",
+    "prod": "npm run build:lambda",
     "start:lambda": "netlify-lambda serve functions",
     "build:lambda": "netlify-lambda build functions"
   },
