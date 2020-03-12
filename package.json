@@ -1,0 +1,26 @@
+{
+  "name": "latex2svg",
+  "version": "1.0.0",
+  "description": "simple node.js api to convert LaTeX to svg",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "jsdom": "^16.2.1",
+    "mathpix-markdown-it": "^1.0.13",
+    "window": "^4.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RintarouTW/latex2svg.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RintarouTW/latex2svg/issues"
+  },
+  "homepage": "https://github.com/RintarouTW/latex2svg#readme"
+}
