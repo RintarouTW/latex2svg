@@ -3,7 +3,7 @@
 
 function latex2svg(latex) {
 
-  fetch('/latex2svg', {
+  fetch('/.netlify/functions/latex2svg', {
       method: 'POST',
       body: JSON.stringify(latex),
       headers: new Headers({

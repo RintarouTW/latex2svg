@@ -3,3 +3,8 @@ request.post('http://localhost/latex2svg',
 
 requests.post('http://localhost:9000/latex2svg',
     json = {"latex": "$$\\frac{1}{6}$$"})
+
+
+requests.post('https://rintaroutw-latex2svg.netlify.com/.netlify/functions/latex2svg',
+    json = {"latex": "$$\\frac{1}{6}$$"})
+
