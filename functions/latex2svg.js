@@ -25,7 +25,7 @@ exports.handler = function(event, context, callback) {
 
   if (event.httpMethod == "GET") {
 
-    json = { "latex" : "\$\$\\LaTeX\\frac{1}{3}\$\$"};
+    json = { "latex" : String.raw`$$\LaTeX\frac{1}{3}$$`};
 
   }  else {
 

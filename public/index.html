@@ -19,7 +19,9 @@ function latex2svg(latex) {
    });;
 }
 
-latex2svg({ "latex" : '\$\$\\LaTeX \\frac{1}{3}\$\$'});
+latex_obj = { "latex" : String.raw`$$\LaTeX\frac{1}{3}$$`};
+
+latex2svg(latex_obj);
 
 </script>
 <body>
@@ -124,7 +126,7 @@ exports.handler = function(event, context, callback) {
    // context for dev/prod environment info
    callback(null, {
      statusCode: 200,
-     body: {svg: "&lt;svg>&gt;/svg>"}
+     body: {svg: "&lt;svg>&lt;/svg>"}
    });
 }
 </pre>

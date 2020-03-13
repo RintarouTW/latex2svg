@@ -13,7 +13,7 @@ const resources = [
 function handler (req, res) {
 
     console.log(req.url);
-    
+
     if (resources.indexOf(req.url) >= 0) {
         
         var stream = fs.createReadStream(__dirname + "/public" + req.url);
@@ -38,7 +38,7 @@ function handler (req, res) {
 
                 // hard coding test
                 if (data.length == 0)
-                    data = '{ "latex" : "\$\$ \\\\frac{1}{2}\$\$"}';
+                    data = `{ "latex" : "$$\frac{1}{2}$$"}`;
 
                 json = JSON.parse(data);
                 console.log(`json =`, json.latex);                
@@ -72,7 +72,7 @@ console.log("=== Automation Testing ===");
 const axios = require('axios');
 
 axios.post('/.netlify/functions/latex2svg', {
-  "latex": '\$\$\\frac{1}{2}\$\$'
+  "latex": String.raw`$$\LaTeX\frac{1}{2}$$`
 }).then(res => {
     console.log(`Response.data : `, res.data);
 });
