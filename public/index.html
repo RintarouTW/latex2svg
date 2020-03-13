@@ -23,7 +23,149 @@ latex2svg({ "latex" : '\$\$\\LaTeX \\frac{1}{3}\$\$'});
 
 </script>
 <body>
-    <div id="svg_container">
-    </div>
+
+<center>    
+<div id="svg_container"></div>
+</center>
+
+<img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/latex.svg"></img> to <img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/svg.svg"></img>
+
+<p>
+<a href="https://github.com/RintarouTW/latex2svg"><img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg"></img> https://github.com/RintarouTW/latex2svg</a>
+</p>
+
+<a href="https://app.netlify.com/sites/rintaroutw-latex2svg/deploys" ><img src="https://api.netlify.com/api/v1/badges/28ed90bb-aaf5-4bdb-9025-61a8f31a9549/deploy-status"></a>
+
+
+<h2>Try It</h2>
+
+<h3> Auto Test via axios inside Node.js itself </h3>
+
+<i>npm install axios</i>
+
+<p>Promise based HTTP client for the browser and node.js</p>
+
+<pre>
+// Automation Testing
+console.log("=== Automation Testing ===");
+
+const axios = require('axios');
+
+axios.post('http://localhost/latex2svg', {
+  latex: '$$\frac{1}{2}$$'
+}).then(res => {
+    console.log(`Response.data : `, res.data);
+});
+</pre>
+
+<h3>Requester (Sublime Text Package) </h3>
+
+<p>HTTP Requester, even support GraphQL for automation tests.
+Text based, fast and portable.</p>
+<a href="https://requester.org/#documentation">https://requester.org/#documentation</a>
+
+<h2>Browser Web Fetch</h2>
+
+<img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/mdnwebdocs.svg"></img> <a href="https://developer.mozilla.org/zh-TW/docs/Web/API/Fetch_API/Using_Fetch"> Using Fetch </a>
+
+<p><i>index.html</i></p>
+
+<pre>
+function latex2svg(latex) {
+
+  fetch('/.netlify/functions/latex2svg', {
+      method: 'POST',
+      body: JSON.stringify(latex),
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      mode: 'cors' // no-cors, cors, *same-origin
+    }).then(response => {
+      return response.json();
+    }).then(json => {
+      container = document.getElementById('svg_container');
+      container.innerHTML = json.svg;
+    }).catch( error => {
+      console.log("Something Wrong");
+   });;
+}
+
+latex2svg({ "latex" : '\$\$\\LaTeX \\frac{1}{3}\$\$'});
+</pre>
+
+mode: no-cors
+
+<p>no-cors is required to cross origin access when tring to load my service directly in your own html.</p>
+
+<h2>Netlify Deployment</h2>
+
+<img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/netlify.svg"></img> Free serverless web service
+
+<h3> GitHub (Push = Auto Deploy)</h3>
+
+git push and deploy, np at all.
+
+<h4>netlify-lambda functions</h4>
+
+Each  lambda function is a module.
+Build command is required for lambda functions.
+
+<pre>
+npm run netlify-lambda build functions
+</pre>
+
+<h4> functions/lambda.js</h4>
+
+source of lambda function, not compiled.
+
+<pre>
+exports.handler = function(event, context, callback) {
+   // event.body
+   // context for dev/prod environment info
+   callback(null, {
+     statusCode: 200,
+     body: {svg: "&lt;svg>&gt;/svg>"}
+   });
+}
+</pre>
+
+<h3>netlify.toml</h3>
+
+<pre>
+[build]
+    function = "lambda" // the compiled path of lambda functions
+</pre>
+
+<h2>Tests</h2>
+
+<img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/dev-dot-to.svg"></img>
+
+<pre>
+nodemon app.js 
+  or 
+npm run start
+<pre>
+
+<img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/node-dot-js.svg"></img>
+
+**axios** to send the test requests after launch automatically. It's possible to write the automation tests with assert too.
+
+<img height="32" width="32" src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/sublimetext.svg"></img> Sublime Text with Requester(pacakge)
+
+tests.pyr (ctrl+r to send requests/ cmd+r to resend)
+<pre>
+## localhost node app.js test
+requests.post('http://localhost/.netlify/functions/latex2svg',
+    json = {"latex": "$$\frac{}$$"})
+
+## localhost netlify-lambda serve functions test.
+requests.post('http://localhost:9000/.netlify/functions/latex2svg',
+    json = {"latex": "$$\\frac{1}{6}$$"})
+
+## netlify-lambda function server test
+requests.post('https://rintaroutw-latex2svg.netlify.com/.netlify/functions/latex2svg',
+    json = {"latex": "$$\\frac{1}{6}$$"})
+<pre>
+
 </body>
 </html>
