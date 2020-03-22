@@ -5,9 +5,9 @@
   "main": "app.js",
   "dependencies": {
     "axios": "^0.19.2",
-    "mathpix-markdown-it": "^1.0.13",
+    "mathpix-markdown-it": "^1.0.14",
     "netlify-lambda": "^1.6.3",
-    "window": "^4.2.6"
+    "window": "^4.2.7"
   },
   "devDependencies": {
     "node-loader": "^0.6.0"
