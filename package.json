@@ -5,7 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "axios": "^0.19.2",
-    "mathpix-markdown-it": "^1.0.14",
+    "mathpix-markdown-it": "^1.0.83",
     "netlify-lambda": "^1.6.3",
     "window": "^4.2.7"
   },
